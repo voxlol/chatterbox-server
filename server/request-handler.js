@@ -12,7 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 
-var messages = [{name:'Colin', message:'I love chatterbox', room: 'Default'}];
+var messages = [{username:'Colin', message:'I love chatterbox', roomname: 'Default'}];
 
 exports.requestHandler = function(request, response) {
   var statusCode = 200;
@@ -62,7 +62,13 @@ exports.requestHandler = function(request, response) {
         }
       })
     }
-  } else{
+  }else if(request.method === 'OPTIONS'){
+    statusCode = 200;
+    response.writeHead(statusCode, headers)
+
+    // response.end("Allow: GET, POST, PUT, DELETE, OPTIONS");
+    response.end();
+  }else{
     // 404 Request handler
     statusCode = 404;
     headers['Content-Type'] = "text/plain";

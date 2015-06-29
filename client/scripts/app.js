@@ -34,14 +34,14 @@ app.fetch = function() {
   app.clearMessages();
   $.ajax({
   // This is the url you should use to communicate with the parse API server.
-  url: 'http://127.0.0.1:3000/',
+  url: 'http://127.0.0.1:3000/classes/room1',
   type: 'GET',
   // data: JSON.stringify(message),
   // contentType: 'application/json',
   success: function (data) {
     _.each(data['results'], function (post){
       //Sanitize messages
-      var text = bleach.sanitize(post.text);
+      var text = bleach.sanitize(post.message);
       var user = bleach.sanitize(post.username).replace(/[^A-Za-z0-9]/g,'');
       var room = bleach.sanitize(post.roomname).replace(/[^A-Za-z0-9]/g,'');
 
@@ -77,7 +77,7 @@ app.createMessage = function(text) {
   var message = {}
 
   message.username = window.location.search.slice(10);
-  message.text = text;
+  message.message = text;
   message.roomname = app.room;
 
   return message;
@@ -88,7 +88,7 @@ app.clearMessages = function() {
 }
 
 app.addMessage = function (message) {
-  var text = bleach.sanitize(message.text);
+  var text = bleach.sanitize(message.message);
   var user = bleach.sanitize(message.username);
   if(!(user === 'undefined' || text === 'undefined')) {
     $('body').append("<div id = chats>"+user+":"+text+"</div>")
@@ -96,8 +96,9 @@ app.addMessage = function (message) {
 }
 
 app.send = function(message) {
+  debugger;
   $.ajax({
-    url: 'http://127.0.0.1:3000/',
+    url: 'http://127.0.0.1:3000/classes/room1',
     type: 'POST',
     data: JSON.stringify(message),
     contentType: 'application/json',

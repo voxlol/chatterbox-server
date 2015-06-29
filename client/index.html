@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/bleach/lib/bleach.js"></script>
+    <!-- your scripts -->
+
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>chatterbox</h1>
+      <form>
+        Message: <input class = "input" type="text" name="Message" value="Put your message here!"><br>
+        <button type="button" id="submit_message">Send Message</button><br>
+        <div id = 'current_chat'>Default</div>
+        Chatroom: <input id = "chatroom_input" type="text" name="Message" value="Put your chatroom here!"><br>
+        <button type="button" id="chatroom_submit">Select Chatroom</button>
+      </form>
+
+      <div class = "chatrooms"></div>
+      <button type="button" class="refresh">Refresh Messages</button>
+      <div id = "messageHanger"></div>
+
+
+    </div>
+  </body>
+</html>

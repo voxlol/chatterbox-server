@@ -19,7 +19,6 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
     console.log('file not found where is?');
     return;
   }
-
   messages = logData.toString().split('\n');
   messages = messages.filter(function(msg){
     if (msg !== "") {
@@ -32,11 +31,9 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
     return JSON.parse(msg);
   })
 });
-// var ip = "127.0.0.1";
-
 
 app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
 
 app.use(function(req, res, next) {
@@ -56,6 +53,7 @@ app.get('/classes/room1', function (req, res) {
     sucesss: true,
     results : messages
   }
+  // edit status code to 201;
   res.send(data);
 })
 app.post('/classes/room1', function (req, res) {
@@ -69,10 +67,9 @@ app.post('/classes/room1', function (req, res) {
       console.log('append success')
     }
   });
+  res.sendStatus(201);
+  res.send({sucess:true});
 })
-// app.set('views',__dirname + '../client');
-// app.set('view engine', 'ejs');
-// app.engine('html', require('ejs').renderFile);
 
 var server = app.listen(port,function(){
   console.log("We have started our server on port 3000");

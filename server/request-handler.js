@@ -11,12 +11,26 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-var express = require("express")
+var express = require("express");
 var app = express();
+var fs = require('fs');
+var messages;
+fs.readFile(__dirname + '/messages.txt', function(err,logData){
+  if(err){
+    console.log(err);
+    console.log('file not found where is?');
+    return;
+  }
 
-
-
-var messages = [{username:'Colin', message:'I love chatterbox', roomname: 'Default'}];
+  // logData.readLine()
+  // console.dir(logData)
+  messages = logData.toString().split('\n');
+  console.log(messages.length)
+  console.log(messages);
+  messages.map(function(msg){
+    return JSON.parse(msg);
+  })
+});
 
 exports.requestHandler = function(request, response) {
   var statusCode = 200;

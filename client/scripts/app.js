@@ -109,7 +109,7 @@ app.send = function(message) {
       console.error('chatterbox: Failed to send message');
     }
   });
-  app.fetch();
+  setTimeout(app.fetch, 1000);
 }
 
 $(document).ready(function(){

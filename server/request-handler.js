@@ -12,10 +12,10 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 var express = require("express");
-var app = express();
 var fs = require('fs');
 var _ = require('underscore');
 
+var app = express();
 var messages = [];
 
 fs.readFile(__dirname + '/messages.txt', function(err,logData){
@@ -24,11 +24,9 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
     console.log('file not found where is?');
     return;
   }
-  debugger;
 
   messages = logData.toString().split('\n');
   messages = messages.filter(function(msg){
-    debugger;
     if (msg !== "") {
       return true;
     }else{
@@ -43,8 +41,6 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
 exports.requestHandler = function(request, response) {
   var statusCode = 200;
   var headers = defaultCorsHeaders;
-
-  // console.log("Serving request type " + request.method + " for url " + request.url);
 
   if(request.method === 'GET'){
     // General get request handler
@@ -62,7 +58,6 @@ exports.requestHandler = function(request, response) {
       };
       response.end(JSON.stringify(data));
     }
-
   }else if(request.method === 'POST'){
     // General POST request handler
     statusCode = 201;
@@ -109,7 +104,6 @@ exports.requestHandler = function(request, response) {
     response.writeHead(statusCode, headers);
     response.end('Not found');
   }
-
 };
 
 var defaultCorsHeaders = {

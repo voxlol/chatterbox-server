@@ -5,6 +5,12 @@
 {"username":"Colin","message":"hello ","roomname":"default"}
 {"username":"Colin","message":"hello ","roomname":"Colin"}
 {"username":"Colin","message":"hello ","roomname":"Colin"}
-
 {"username":"Colin","message":"message number one","roomname":"default"}
 {"username":"Colin","message":"message number two","roomname":"default"}
+
+{"username":"Colin","message":"Hello World This is using Express"}
+{"username":"Colin","message":"Put your message here!","roomname":"default"}
+{"username":"Colin","message":"Express sending ","roomname":"default"}
+{"username":"Colin","message":"Put your message here!","roomname":"default"}
+{"username":"Colin","message":"Put your message here!","roomname":"default"}
+{"username":"Colin","message":"we're done!!","roomname":"default"}

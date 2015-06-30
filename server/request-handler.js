@@ -11,12 +11,18 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
+var express = require("express")
+var app = express();
+
+
 
 var messages = [{username:'Colin', message:'I love chatterbox', roomname: 'Default'}];
 
 exports.requestHandler = function(request, response) {
   var statusCode = 200;
   var headers = defaultCorsHeaders;
+
+
 
   // console.log("Serving request type " + request.method + " for url " + request.url);
 
@@ -41,7 +47,7 @@ exports.requestHandler = function(request, response) {
     // General POST request handler
     statusCode = 201;
     response.writeHead(statusCode, headers)
-    headers['Content-Type'] = "text/plain";
+    headers['Content-Type'] = "application/json";
 
     if(request.url === '/classes/room1' || request.url === '/classes/messages'){
       var body = "";
@@ -54,11 +60,11 @@ exports.requestHandler = function(request, response) {
           // If no username or text supplied
           statusCode = 500;
           response.writeHead(statusCode, headers)
-          response.end('Invalid data type');
+          response.end(JSON.stringify({success:false}));
         }else{
           // If data is okay
           messages.unshift(parsed)
-          response.end('Message received!');
+          response.end(JSON.stringify({success:true}));
         }
       })
     }

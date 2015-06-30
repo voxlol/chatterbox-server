@@ -96,7 +96,6 @@ app.addMessage = function (message) {
 }
 
 app.send = function(message) {
-  debugger;
   $.ajax({
     url: 'http://127.0.0.1:3000/classes/room1',
     type: 'POST',

@@ -17,8 +17,6 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
     .map(function(msg){return JSON.parse(msg);})
 });
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(multer()); // for parsing multipart/form-data
 app.use(function(req, res, next) {
   res.header({
     "Access-Control-Allow-Origin" : "*",
@@ -29,6 +27,8 @@ app.use(function(req, res, next) {
   })
   next();
 });
+app.use(bodyParser.json()); // for parsing application/json
+app.use(multer()); // for parsing multipart/form-data
 app.use("/", express.static((path.join(__dirname, '../client/'))))
 app.get('/', function (req, res) {res.render((path.join(__dirname, '../client/index.html')))});
 app.get('/classes/room1', function (req, res) {
@@ -41,7 +41,7 @@ app.post('/classes/room1', function (req, res) {
   fs.appendFile(__dirname + '/messages.txt', '\n'+JSON.stringify(req.body), function(err){
     err ? console.log('append error' + err) : console.log('append success');
   });
-  res.sendStatus(201);
+  res.status(201);
   res.send({success:true});
 })
 

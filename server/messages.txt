@@ -1,4 +1,10 @@
 {"username":"Colin","message":"I love chatterbox","roomname":"Default"}
-{"username":"Colin","message":"I love chatterbox","roomname":"Default"}
-{"username":"Colin","message":"I love chatterbox","roomname":"Default"}
-{"username":"Colin","message":"I love chatterbox","roomname":"Default"}
+{"username":"allen","message":"Put your message here!","roomname":"default"}
+{"username":"allen","message":"This is a new message","roomname":"default"}
+{"username":"allen","message":"this is a msg","roomname":"default"}
+{"username":"Colin","message":"hello ","roomname":"default"}
+{"username":"Colin","message":"hello ","roomname":"Colin"}
+{"username":"Colin","message":"hello ","roomname":"Colin"}
+
+{"username":"Colin","message":"message number one","roomname":"default"}
+{"username":"Colin","message":"message number two","roomname":"default"}

@@ -14,20 +14,28 @@ this file and include it in basic-server.js so that it actually works.
 var express = require("express");
 var app = express();
 var fs = require('fs');
-var messages;
+var _ = require('underscore');
+
+var messages = [];
+
 fs.readFile(__dirname + '/messages.txt', function(err,logData){
   if(err){
     console.log(err);
     console.log('file not found where is?');
     return;
   }
+  debugger;
 
-  // logData.readLine()
-  // console.dir(logData)
   messages = logData.toString().split('\n');
-  console.log(messages.length)
-  console.log(messages);
-  messages.map(function(msg){
+  messages = messages.filter(function(msg){
+    debugger;
+    if (msg !== "") {
+      return true;
+    }else{
+      return false;
+    }
+  })
+  messages = messages.map(function(msg){
     return JSON.parse(msg);
   })
 });
@@ -35,8 +43,6 @@ fs.readFile(__dirname + '/messages.txt', function(err,logData){
 exports.requestHandler = function(request, response) {
   var statusCode = 200;
   var headers = defaultCorsHeaders;
-
-
 
   // console.log("Serving request type " + request.method + " for url " + request.url);
 
@@ -78,6 +84,14 @@ exports.requestHandler = function(request, response) {
         }else{
           // If data is okay
           messages.unshift(parsed)
+          // write it othe file?
+          fs.appendFile(__dirname + '/messages.txt', '\n'+JSON.stringify(parsed), function(err){
+            if(err) {
+              console.log('append error' + err)
+            }else{
+              console.log('append success')
+            }
+          });
           response.end(JSON.stringify({success:true}));
         }
       })
